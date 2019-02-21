@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="link.lycreate.blog.dao.MessageMapper">
+    <resultMap id="MessageMap" type="link.lycreate.blog.model.Message">
+        <id column="message_id" property="messageId"/>
+        <result column="title" property="title" />
+        <result column="mainCatalog_id" property="mainCatalogId"/>
+        <result column="subCatalog_id" property="subCatalogId" />
+        <result column="content" property="content" />
+        <result column="createTime" property="createTime" />
+        <result column="summary" property="summary" />
+    </resultMap>
+    <select id="selectMessageByMessageId" resultMap="MessageMap">
+        select * from message where message_id=#{messageId}
+    </select>
+    <select id="selectMessageByCreateTime" resultMap="MessageMap">
+        select * from message where createtime=#{createTime}
+    </select>
+    <select id="selectCount" resultType="int">
+        select count(*) from message
+    </select>
+    <select id="selectCountByMain" resultType="int">
+        select count(*) from message where mainCatalog_id=#{mainCatalogId}
+    </select>
+    <select id="selectCountBySub" resultType="int">
+        select count(*) from message where subCatalog_id=#{subCatalogId}
+    </select>
+    <select id="selectAllBrief" resultType="link.lycreate.blog.model.Brief">
+        select message_id as messageId,title as title,summary as summary from message limit #{startPos},#{pageSize}
+    </select>
+    <select id="selectBriefByMain" resultType="link.lycreate.blog.model.Brief">
+        select message_id as messageId,title as title,summary as summary from message where mainCatalog_id=#{mainCatalogId} limit #{startPos},#{pageSize}
+    </select>
+    <select id="selectBriefBySub" resultType="link.lycreate.blog.model.Brief">
+         select message_id as messageId,title as title,summary as summary from message where subCatalog_id=#{subCatalogId} limit #{startPos},#{pageSize}
+    </select>
+    <delete id="deleteMessageByMessageId">
+        delete from message where message_id=#{messageId}
+    </delete>
+    <update id="updateMessage" parameterType="link.lycreate.blog.model.Message">
+        update message set
+          title=#{title},
+          mainCatalog_id=#{mainCatalogId},
+          subCatalog_id=#{subCatalogId},
+          content=#{content},
+          createtime=#{createTime}
+    </update>
+    <insert id="insertMessage" parameterType="link.lycreate.blog.model.Message">
+        insert into message(title,mainCatalog_id,subCatalog_id,content,createtime)
+        values(#{title},#{mainCtalogId},#{subCatralogId},#{content},#{createTime})
+    </insert>
+</mapper>

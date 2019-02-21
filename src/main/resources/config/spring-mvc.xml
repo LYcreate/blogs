@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<mvc:resources mapping="/**" location="/LYcreate/" />&ndash;&gt;-->
+    <mvc:resources mapping="/layui/**" location="/layui/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <!--使用注解(可以代替配置映射器和适配器)-->
+    <mvc:annotation-driven/>
+    <!--扫描带有注解的控制类，不可以放在Spring的配置中-->
+    <context:component-scan base-package="link.lycreate.blog.controller"/>
+
+    <!-- 视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000"/>
+        <property name="defaultEncoding" value="utf-8"></property>
+    </bean>
+</beans>

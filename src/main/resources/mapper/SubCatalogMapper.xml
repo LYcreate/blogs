@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="link.lycreate.blog.dao.SubCatalogMapper">
+    <resultMap id="SubCatalogMap" type="link.lycreate.blog.model.SubCatalog">
+        <id column="subCatalog_id" property="subCatalogId" />
+        <result column="name" property="name" />
+        <result column="mainCatalog_id" property="mainCatalogId" />
+    </resultMap>
+    <select id="selectAllSubCatalog" resultMap="SubCatalogMap" >
+        select * from subcatalog
+    </select>
+    <select id="selectSubCatalogBySubCatalogId" resultMap="SubCatalogMap">
+        select * from subcatalog where subCatalog_id=#{subCatalogId}
+    </select>
+    <select id="selectSubcatalogByName" resultMap="SubCatalogMap">
+        select * from subcatalog where name=#{name}
+    </select>
+    <select id="selectSubcatalogByMainCatalogId" resultMap="SubCatalogMap">
+        select * from subcatalog where mainCatalog_id=#{mainCatalogId}
+    </select>
+    <select id="selectMainCatalogIdBySubCatalogId" resultType="int">
+        select mainCatalog_id from subcatalog where subCatalog_id=#{subCatalogId}
+    </select>
+    <delete id="deleteSubCtalogBySubCatalogId">
+        delete from subcatalog where subCatalog_id=#{subCatalogId}
+    </delete>
+    <delete id="deleteSubCatalogByName">
+        delete from subcatalog where name=#{name}
+    </delete>
+    <insert id="inserSubCatalog">
+        insert into subcatalog(subCatalog_id,name) values (#{subCatalogId},#{name})
+    </insert>
+    <update id="updateSubCatalog">
+        update subcatalog set name=#{name} where subCatalog_id=#{subCatalogId}
+    </update>
+</mapper>
