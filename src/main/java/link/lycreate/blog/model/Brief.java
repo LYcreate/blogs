@@ -1,12 +1,14 @@
 package link.lycreate.blog.model;
 
+import java.io.Serializable;
+
 /**
  * @ClassName Brief
  * @Description TODO
  * @Author LYcreate
  * @Date 2019/2/12 12:25
  */
-public class Brief {
+public class Brief implements Serializable {
     private Integer messageId;
     private String title;
     private String summary;

@@ -54,4 +54,10 @@ public class SubCatalogServiceImpl implements SubCatalogService {
         System.out.println(catalogMap);
         return catalogMap;
     }
+
+    @Override
+    public List<SubCatalog> getSubCatalog(Integer mainCatalogId) {
+        List<SubCatalog> list=subCatalogMapper.selectSubcatalogByMainCatalogId(mainCatalogId);
+        return list;
+    }
 }

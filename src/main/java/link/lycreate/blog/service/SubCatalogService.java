@@ -1,5 +1,8 @@
 package link.lycreate.blog.service;
+import link.lycreate.blog.model.SubCatalog;
+
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * SubCatalogService
@@ -9,4 +12,5 @@ import java.util.HashMap;
  */
 public interface SubCatalogService {
     public HashMap<String,Object> getCatalog();
+    public List<SubCatalog> getSubCatalog(Integer mainCatalogId);
 }

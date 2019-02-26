@@ -2,6 +2,7 @@ package link.lycreate.blog.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * */
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Serializable {
     private int messageId;
     private String title;
     private String mainCatalogId;

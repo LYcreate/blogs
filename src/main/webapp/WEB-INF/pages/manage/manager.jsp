@@ -25,7 +25,7 @@
         <div class="layui-logo" style="color: #ffffff"><i class="layui-icon layui-icon-home" style="color: #ffffff;"></i>LYcreate</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="">退出登录</a></li>
         </ul>
     </div>
     <div class="layui-side layui-bg-black">
@@ -33,7 +33,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">写博客</a>
+                    <a class="" href="#" onclick="editPage()">写博客</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">文章管理</a>
@@ -46,7 +46,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <div style="padding: 15px;" id="mainContent">内容主体区域</div>
     </div>
 
     <div class="layui-footer" style="position: fixed;bottom: 0px;margin:0 auto">
@@ -55,12 +55,15 @@
     </div>
 </div>
 <script src="<%=path%>/layui/layui.js"></script>
+<script src="<%=path%>/js/jquery.min.js"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;
-
     });
+    function editPage() {
+        $("#mainContent").load("<%=path%>/partPage/editBlog.jsp");
+    }
 </script>
 </body>
 </html>
