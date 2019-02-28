@@ -2,6 +2,7 @@ package link.lycreate.blog.service.impl;
 
 import link.lycreate.blog.dao.MessageMapper;
 import link.lycreate.blog.model.Brief;
+import link.lycreate.blog.model.Message;
 import link.lycreate.blog.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,5 +77,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Map<String, Object> getMessage(String messageId) {
         return null;
+    }
+
+    @Override
+    public int uploadMessage(Message message) {
+        return messageMapper.insertMessage(message);
     }
 }

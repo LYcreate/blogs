@@ -1,5 +1,7 @@
 package link.lycreate.blog.service;
 
+import link.lycreate.blog.model.Message;
+
 import java.util.Map;
 
 /**
@@ -34,4 +36,12 @@ public interface MessageService {
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     public Map<String,Object> getMessage(String messageId);
+    /**
+     * description
+     * @author LYcreate
+     * @date 2019/2/28 16:44
+     * @param message
+     * @return int
+     */
+    public int uploadMessage(Message message);
 }

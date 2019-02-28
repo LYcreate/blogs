@@ -4,6 +4,7 @@ import link.lycreate.blog.model.Brief;
 import link.lycreate.blog.model.Message;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface MessageMapper {
      * @param createTime
      * @return java.util.List<link.lycreate.blog.model.Message>
      */
-    public List<Message> selectMessageByCreateTime(Date createTime);
+    public List<Message> selectMessageByCreateTime(Timestamp createTime);
     /**
      * description
      * @author LYcreate

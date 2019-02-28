@@ -36,19 +36,16 @@
         <textarea id="desc" placeholder="请输入概要" class="layui-textarea"></textarea>
     </div>
 </div>
-<div id="div1" class="toolbar">
-</div>
-<div style="padding: 5px"></div>
-<div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+<div id="div1" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
     <p>请输入内容</p>
 </div>
+<button class="layui-btn" onclick="submitBlog()">提交</button>
 <script type="text/javascript" src="<%=path%>/js/wangEditor.min.js"></script>
-<script type="text/javascript" src="<%=path%>/layui/layui.js"></script>
+<script type="text/javascript" src="<%=path%>/layui/lay/modules/layer.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor;
-    var editor1 = new E('#div1', '#div2')  // 两个参数也可以传入 elem 对象，class 选择器
-    editor1.customConfig.uploadImgServer="<%=path%>/img";
+    var editor1 = new E('#div1')  // 两个参数也可以传入 elem 对象，class 选择器
     editor1.customConfig.uploadImgShowBase64 = true;
     editor1.create();
     $.ajax({
@@ -97,14 +94,11 @@
                 console.log(result);
                 if (result["status"]==1){
                     layer.msg("上传成功！");
-                    window.location.href="..";
-                }else{
+                }
+                else{
                     layer.alert(result["result"]);
                 }
             }
         })
     }
-
-    
-
 </script>

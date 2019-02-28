@@ -3,6 +3,7 @@ package link.lycreate.blog.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,14 +17,23 @@ import java.util.Date;
 public class Message implements Serializable {
     private int messageId;
     private String title;
-    private String mainCatalogId;
-    private String subCatalogId;
+    private int mainCatalogId;
+    private int subCatalogId;
     public String content;
-    private Date createTime;
+    private Timestamp createTime;
     private String summary;
 
-    public Message(int messageId, String title, String mainCatalogId, String subCatalogId, String content, Date createTime, String summary) {
+    public Message(int messageId, String title, Integer mainCatalogId, Integer subCatalogId, String content, Timestamp createTime, String summary) {
         this.messageId = messageId;
+        this.title = title;
+        this.mainCatalogId = mainCatalogId;
+        this.subCatalogId = subCatalogId;
+        this.content = content;
+        this.createTime = createTime;
+        this.summary = summary;
+    }
+
+    public Message(String title, Integer mainCatalogId, Integer subCatalogId, String content, Timestamp createTime, String summary) {
         this.title = title;
         this.mainCatalogId = mainCatalogId;
         this.subCatalogId = subCatalogId;
@@ -48,19 +58,19 @@ public class Message implements Serializable {
         this.title = title;
     }
 
-    public String getMainCatalogId() {
+    public Integer getMainCatalogId() {
         return mainCatalogId;
     }
 
-    public void setMainCatalogId(String mainCatalogId) {
+    public void setMainCatalogId(Integer mainCatalogId) {
         this.mainCatalogId = mainCatalogId;
     }
 
-    public String getSubCatalogId() {
+    public Integer getSubCatalogId() {
         return subCatalogId;
     }
 
-    public void setSubCatalogId(String subCatalogId) {
+    public void setSubCatalogId(Integer subCatalogId) {
         this.subCatalogId = subCatalogId;
     }
 
@@ -72,11 +82,11 @@ public class Message implements Serializable {
         this.content = content;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

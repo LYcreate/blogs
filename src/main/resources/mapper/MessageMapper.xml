@@ -46,7 +46,7 @@
           createtime=#{createTime}
     </update>
     <insert id="insertMessage" parameterType="link.lycreate.blog.model.Message">
-        insert into message(title,mainCatalog_id,subCatalog_id,content,createtime)
-        values(#{title},#{mainCtalogId},#{subCatralogId},#{content},#{createTime})
+        insert into message(title,mainCatalog_id,subCatalog_id,content,create_time,summary)
+        values(#{title},#{mainCatalogId},#{subCatalogId},#{content},#{createTime},#{summary})
     </insert>
 </mapper>
