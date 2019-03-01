@@ -75,12 +75,17 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Map<String, Object> getMessage(String messageId) {
-        return null;
+    public Message getMessage(Integer messageId) {
+        return messageMapper.selectMessageByMessageId(messageId);
     }
 
     @Override
     public int uploadMessage(Message message) {
         return messageMapper.insertMessage(message);
+    }
+
+    @Override
+    public int deleteMessageById(int messageId) {
+        return messageMapper.deleteMessageByMessageId(messageId);
     }
 }

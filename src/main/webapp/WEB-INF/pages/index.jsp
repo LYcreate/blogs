@@ -25,7 +25,7 @@
         var html="";
         for (var key in briefs){
             html+="<div class=\"layui-card\" >\n" +
-                "  <div class=\"layui-card-header\" style=\"font-family: '微软雅黑 Light';font-size:20px\"><a id='"+briefs[key]["messageId"]+"' href='"+"<%=basePath%>message/"+
+                "  <div class=\"layui-card-header\" style=\"font-family: '微软雅黑 Light';font-size:20px\"><a id='"+briefs[key]["messageId"]+"' href='"+"<%=basePath%>message?messageId="+
                 briefs[key]["messageId"]+"'>"+briefs[key]["title"]+
                 "</div>\n" + "  <div class=\"layui-card-body\">"+briefs[key]["summary"]+
                 "</div>\n" +
@@ -86,37 +86,15 @@
             , count: totalMessage//数据总数
             , jump: function (obj) {
                 pageNow=obj.curr;
-                if($.isEmptyObject(mainCatalogId)){
-                    $.ajax({
-                        type:"GET",
-                        url:"<%=basePath%>getAllMessage",
-                        data:{"pageNow":pageNow},
-                        dataType:"json",
-                        success:function (json) {
-                            showPage(json);
-                        }
-                    });
-                }else if($.isEmptyObject(subCatalogId)){
-                    $.ajax({
-                        type:"GET",
-                        url:"<%=basePath%>messageListByMain",
-                        data:{"mainCatalogId":mainCatalogId,"pageNow":pageNow},
-                        dataType:"json",
-                        success:function (json) {
-                            showPage(json);
-                        }
-                    });
-                }else {
-                    $.ajax({
-                        type:"GET",
-                        url:"<%=basePath%>messageListBySub",
-                        data:{"subCatalogId":subCatalogId,"pageNow":pageNow},
-                        dataType:"json",
-                        success:function (json) {
-                            showPage(json);
-                        }
-                    });
-                }
+                $.ajax({
+                    type:"GET",
+                    url:"<%=basePath%>getAllMessage",
+                    data:{"pageNow":pageNow},
+                    dataType:"json",
+                    success:function (json) {
+                        showPage(json);
+                    }
+                });
             }
         });
     });

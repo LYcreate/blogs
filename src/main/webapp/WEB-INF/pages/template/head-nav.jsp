@@ -19,7 +19,7 @@
     <script src="<%=path%>/js/jquery.min.js"></script>
     <link rel="stylesheet" href="<%=path%>/layui/css/layui.css">
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="overflow: auto">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo" style="color: #ffffff"><i class="layui-icon layui-icon-home" style="color: #ffffff;"></i><a href="#" style="color: #F8F8F8" onclick="getAllMessage()">LYcreate</a></div>

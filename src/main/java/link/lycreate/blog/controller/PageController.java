@@ -1,6 +1,7 @@
 package link.lycreate.blog.controller;
 
 import link.lycreate.blog.model.MainCatalog;
+import link.lycreate.blog.model.Message;
 import link.lycreate.blog.service.MainCatalogService;
 import link.lycreate.blog.service.MessageService;
 import link.lycreate.blog.service.SubCatalogService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -82,5 +84,19 @@ public class PageController {
         System.out.println(sPageNow);
         Map<String,Object> pageMap=messageService.getPage("sub",subCatalogId,pageNow);
         return pageMap;
+    }
+    @RequestMapping("/message")
+    public ModelAndView getMessageById(int messageId){
+        ModelAndView mav=new ModelAndView();
+        Message message=messageService.getMessage(messageId);
+        System.out.println(message);
+        mav.addObject("blog",message);
+        mav.setViewName("article");
+        return mav;
+    }
+    @RequestMapping("/getMessage")
+    public @ResponseBody Message getMessage(int messageId){
+        System.out.println(messageId);
+        return messageService.getMessage(messageId);
     }
 }

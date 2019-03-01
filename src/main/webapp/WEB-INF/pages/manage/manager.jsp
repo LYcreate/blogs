@@ -22,7 +22,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="color: #ffffff"><i class="layui-icon layui-icon-home" style="color: #ffffff;"></i>LYcreate</div>
+        <div class="layui-logo" style="color: #ffffff"><i class="layui-icon layui-icon-home" style="color: #ffffff;"></i><a href="<%=basePath%>" style="color: #F8F8F8">LYcreate</a></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item"><a href="">退出登录</a></li>
@@ -36,7 +36,7 @@
                     <a class="" href="#" onclick="editPage()">写博客</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">文章管理</a>
+                    <a href="#" onclick="manageMessage()">文章管理</a>
                 </li>
                 <li class="layui-nav-item"><a href="">评论管理</a></li>
                 <li class="layui-nav-item"><a href="">分类管理</a></li>
@@ -46,11 +46,11 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;" id="mainContent">内容主体区域</div>
+        <div style="padding: 15px;" id="mainContent">欢迎登录</div>
     </div>
 
     <div class="layui-footer" style="position: fixed;bottom: 0px;margin:0 auto">
-        <div></div>
+        <div style="padding: 40px"></div>
         <div style="font-family: '微软雅黑 Light';text-align: center;margin:0 auto">Copyright © 2019 Designed By Yi Lu</div>
     </div>
 </div>
@@ -64,6 +64,10 @@
     function editPage() {
         $("#mainContent").load("<%=path%>/partPage/editBlog.jsp");
     }
+    function manageMessage() {
+        $("#mainContent").load("<%=path%>/partPage/manageBlog.jsp");
+    }
+
 </script>
 </body>
 </html>

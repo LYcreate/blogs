@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "message")
 public class Message implements Serializable {
-    private int messageId;
+    private Integer messageId;
     private String title;
     private int mainCatalogId;
     private int subCatalogId;
@@ -23,7 +23,7 @@ public class Message implements Serializable {
     private Timestamp createTime;
     private String summary;
 
-    public Message(int messageId, String title, Integer mainCatalogId, Integer subCatalogId, String content, Timestamp createTime, String summary) {
+    public Message(Integer messageId, String title, Integer mainCatalogId, Integer subCatalogId, String content, Timestamp createTime, String summary) {
         this.messageId = messageId;
         this.title = title;
         this.mainCatalogId = mainCatalogId;

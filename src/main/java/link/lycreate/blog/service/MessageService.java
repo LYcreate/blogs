@@ -35,7 +35,7 @@ public interface MessageService {
      * @param messageId
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
-    public Map<String,Object> getMessage(String messageId);
+    public Message getMessage(Integer messageId);
     /**
      * description
      * @author LYcreate
@@ -44,4 +44,12 @@ public interface MessageService {
      * @return int
      */
     public int uploadMessage(Message message);
+    /**
+     * description
+     * @author LYcreate
+     * @date 2019/3/2 0:45
+     * @param messageId
+     * @return int
+     */
+    public int deleteMessageById(int messageId);
 }

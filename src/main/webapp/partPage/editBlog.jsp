@@ -14,7 +14,7 @@
 <div class="layui-form-item">
     <label class="layui-form-label">标题</label>
     <div class="layui-input-block">
-        <input type="text" id="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        <input type="text" id="blogTitle" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
@@ -26,7 +26,7 @@
     </div>
     <div class="layui-input-inline">
         <select id="quiz2">
-            <option value="">请选择</option>
+            <option value="12">请选择</option>
         </select>
     </div>
 </div>
@@ -37,7 +37,7 @@
     </div>
 </div>
 <div id="div1" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
-    <p>请输入内容</p>
+    <p id="content">请输入内容</p>
 </div>
 <button class="layui-btn" onclick="submitBlog()">提交</button>
 <script type="text/javascript" src="<%=path%>/js/wangEditor.min.js"></script>
@@ -47,6 +47,7 @@
     var E = window.wangEditor;
     var editor1 = new E('#div1')  // 两个参数也可以传入 elem 对象，class 选择器
     editor1.customConfig.uploadImgShowBase64 = true;
+    editor1.customConfig.uploadImgMaxSize =  320 * 1024;
     editor1.create();
     $.ajax({
         type:"POST",
@@ -64,6 +65,7 @@
     function updateSubCatalog() {
         var mainOption=$("#quiz1 option:selected").val();
         console.log(mainOption);
+        $("#quiz2").html("<option value=\"12\">请选择</option>");
         $.ajax({
             type:"POST",
             url:"<%=basePath%>manage/getSubCatalog",

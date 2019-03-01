@@ -127,6 +127,15 @@ public class ManagerController {
         }
     }
 
+    @RequestMapping("/deleteMessage")
+    public @ResponseBody NetResult deleteMessage(int messageId){
+        int count=messageService.deleteMessageById(messageId);
+        NetResult netResult=new NetResult();
+        netResult.setStatus(count);
+        String result=count==0?"删除成功！":"删除失败！";
+        netResult.setResult(result);
+        return netResult;
+    }
     @RequestMapping("/uploadBlog")
     public @ResponseBody
     NetResult uploadBlog(HttpServletRequest request) {
@@ -141,7 +150,10 @@ public class ManagerController {
                 String title = request.getParameter("title");
                 String summary = request.getParameter("summary");
                 Integer mainCatalogId = Integer.parseInt(request.getParameter("mainCatalogId"));
-                Integer subCatalogId = Integer.parseInt(request.getParameter("subCatalogId"));
+                String sSubCatalogId=request.getParameter("subCatalogId");
+                System.out.println("subCatalogId");
+                Integer subCatalogId;
+                subCatalogId=Integer.parseInt(sSubCatalogId);
                 String content = request.getParameter("content");
                 Date time = new Date();
                 Timestamp createTime = new Timestamp(time.getTime());
