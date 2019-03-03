@@ -13,4 +13,7 @@ import java.util.Map;
  */
 public interface MainCatalogService {
     public List<MainCatalog> getMainCatalog();
+    public int addMainCatalog(String name);
+    public int updateMainCatalog(String name,int mainCatalogId);
+    public int deleteMainCatalog(int mainCatalogId);
 }

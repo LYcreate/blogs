@@ -40,10 +40,10 @@ public interface MainCatalogMapper {
      * description
      * @author LYcreate
      * @date 2019/2/3 18:40
-     * @param mainCatalog
+     * @param name
      * @return int
      */
-    public int insertMainCatalog(MainCatalog mainCatalog);
+    public int insertMainCatalog(String name);
 
     /**
      * description

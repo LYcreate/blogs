@@ -28,7 +28,7 @@
         delete from subcatalog where name=#{name}
     </delete>
     <insert id="inserSubCatalog">
-        insert into subcatalog(subCatalog_id,name) values (#{subCatalogId},#{name})
+        insert into subcatalog(mainCatalog_id,name) values (#{mainCatalogId},#{name})
     </insert>
     <update id="updateSubCatalog">
         update subcatalog set name=#{name} where subCatalog_id=#{subCatalogId}

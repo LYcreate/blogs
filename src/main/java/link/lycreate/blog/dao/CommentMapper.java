@@ -46,7 +46,7 @@ public interface CommentMapper {
      * @param messageId messageId
      * @return link.lycreate.blog.model.CommentServiceImpl
      */
-    public Comment selectCommentByMessageId(String messageId);
+    public List<Comment> selectCommentByMessageId(int messageId);
 
     /**
      * description

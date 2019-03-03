@@ -52,4 +52,12 @@ public interface MessageService {
      * @return int
      */
     public int deleteMessageById(int messageId);
+    /**
+     * description
+     * @author LYcreate
+     * @date 2019/3/2 14:51
+     * @param message
+     * @return int
+     */
+    public int updateMessage(Message message);
 }

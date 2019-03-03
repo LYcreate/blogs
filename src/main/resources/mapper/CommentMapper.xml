@@ -6,7 +6,8 @@
         <result column="user_name" property="userName" />
         <result column="email" property="email" />
         <result column="message_id" property="messageId" />
-        <result column="date" property="date" />
+        <result column="create_time" property="createTime" />
+        <result column="content" property="content" />
     </resultMap>
     <select id="selectAllComment" resultMap="CommentMap">
         select * from comment
@@ -18,7 +19,7 @@
         select * from comment where email=#{email}
     </select>
     <select id="selectCommentByMessageId" resultMap="CommentMap">
-        select * from comment where message_id={messageId}
+        select * from comment where message_id=#{messageId}
     </select>
     <select id="selectUserNameByCommentId" resultType="String">
         select user_name where comment_id=#{commentId}
@@ -30,6 +31,6 @@
         delete from comment where comment_id=#{commentId}
     </delete>
     <insert id="insertComment" parameterType="link.lycreate.blog.model.Comment">
-        insert into comment(user_name,email,message_id,date) values (#{userName},#{email},#{messageId},#{date})
+        insert into comment(user_name,email,message_id,create_time,content) values (#{userName},#{email},#{messageId},#{createTime},#{content})
     </insert>
 </mapper>

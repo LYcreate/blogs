@@ -39,7 +39,7 @@
 <div id="div1" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
     <p id="content">请输入内容</p>
 </div>
-<button class="layui-btn" onclick="submitBlog()">提交</button>
+<div id="submit"><button class="layui-btn" onclick="submitBlog(this)" id="uploadBlog" >提交</button></div>
 <script type="text/javascript" src="<%=path%>/js/wangEditor.min.js"></script>
 <script type="text/javascript" src="<%=path%>/layui/lay/modules/layer.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
@@ -80,16 +80,17 @@
             }
         })
     }
-    function submitBlog() {
+    function submitBlog(obj) {
         var title=$("#title").val();
         var summary=$("#desc").val();
         var mainOption=$("#quiz1 option:selected").val();
         var subOption=$("#quiz2 option:selected").val();
         var blogHtml=editor1.txt.html();
-        var data={"title":title,"summary":summary,"mainCatalogId":mainOption,"subCatalogId":subOption,"content":blogHtml};
+        var url="<%=basePath%>manage/"+obj.id;
+        var data={"title":title,"summary":summary,"mainCatalogId":mainOption,"subCatalogId":subOption,"content":blogHtml,"action":obj.id};
         $.ajax({
             type:"POST",
-            url:"<%=basePath%>manage/uploadBlog",
+            url:url,
             data:data,
             dataType:"json",
             success:function (result) {

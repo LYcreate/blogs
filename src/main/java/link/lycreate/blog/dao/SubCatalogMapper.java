@@ -2,6 +2,7 @@ package link.lycreate.blog.dao;
 
 import link.lycreate.blog.model.MainCatalog;
 import link.lycreate.blog.model.SubCatalog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -72,10 +73,11 @@ public interface SubCatalogMapper {
      * description
      * @author LYcreate
      * @date 2019/2/3 18:49
-     * @param subCatalog
+     * @param name
+      mainCatalogId
      * @return int
      */
-    public int inserSubCatalog(SubCatalog subCatalog);
+    public int inserSubCatalog(@Param("name") String name, @Param("mainCatalogId") int mainCatalogId);
     /**
      * description
      * @author LYcreate

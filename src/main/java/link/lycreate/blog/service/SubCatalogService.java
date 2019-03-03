@@ -13,4 +13,5 @@ import java.util.List;
 public interface SubCatalogService {
     public HashMap<String,Object> getCatalog();
     public List<SubCatalog> getSubCatalog(Integer mainCatalogId);
+    public int addSubCatalog(String name,int mainCatalogId);
 }

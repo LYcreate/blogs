@@ -39,7 +39,7 @@
                     <a href="#" onclick="manageMessage()">文章管理</a>
                 </li>
                 <li class="layui-nav-item"><a href="">评论管理</a></li>
-                <li class="layui-nav-item"><a href="">分类管理</a></li>
+                <li class="layui-nav-item"><a href="#" onclick="manageCatalog()">分类管理</a></li>
             </ul>
         </div>
     </div>
@@ -67,7 +67,9 @@
     function manageMessage() {
         $("#mainContent").load("<%=path%>/partPage/manageBlog.jsp");
     }
-
+    function manageCatalog() {
+        $("#mainContent").load("<%=path%>/partPage/manageCatalog.jsp")
+    }
 </script>
 </body>
 </html>

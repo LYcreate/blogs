@@ -31,20 +31,20 @@
 <script src="<%=path%>/layui/layui.js"></script>
 <script>
     $.ajax({
-            type:"GET",
-            url:"<%=basePath%>catalog",
-            data:{
-            },
-            dataType:'json',
-            success:function (json) {
-                var content="";
-                for(var key in json){
-                    if(key!="result"){
-                        content+="<li class=\"layui-nav-item\" ><a href=\"#\" id="+key+" onclick='getPageByMain(this)'>"+json[key]["name"]+"</a>";
-                        if(!$.isEmptyObject(json[key]["subCatalog"])){
-                            var subCatalog=json[key]["subCatalog"];
-                            content+="<dl class=\"layui-nav-child\">";
-                            for (var key2 in subCatalog){
+        type:"GET",
+        url:"<%=basePath%>catalog",
+        data:{
+        },
+        dataType:'json',
+        success:function (json) {
+            var content="";
+            for(var key in json){
+                if(key!="result"){
+                    content+="<li class=\"layui-nav-item\" ><a href=\"#\" id="+key+" onclick='getPageByMain(this)'>"+json[key]["name"]+"</a>";
+                    if(!$.isEmptyObject(json[key]["subCatalog"])){
+                        var subCatalog=json[key]["subCatalog"];
+                        content+="<dl class=\"layui-nav-child\">";
+                        for (var key2 in subCatalog){
                                 content+="<dd><a href=\"#\" class="+key+" id="+key2+" onclick='getPageBySub(this)'>"+subCatalog[key2]+"</a><dd>";
                             }
                             content+="</dl>"

@@ -29,4 +29,20 @@ public class MainCatalogServiceImpl implements MainCatalogService {
         List<MainCatalog> mainCatalogList=mainCatalogMapper.selectAllMainCatalog();
         return mainCatalogList;
     }
+
+    @Override
+    public int addMainCatalog(String name) {
+        return mainCatalogMapper.insertMainCatalog(name);
+    }
+
+    @Override
+    public int updateMainCatalog(String name, int mainCatalogId) {
+        MainCatalog mainCatalog=new MainCatalog(mainCatalogId,name);
+        return mainCatalogMapper.updateMainCatalog(mainCatalog);
+    }
+
+    @Override
+    public int deleteMainCatalog(int mainCatalogId) {
+        return mainCatalogMapper.deleteMainCatalogByMainCatalogId(mainCatalogId);
+    }
 }

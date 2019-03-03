@@ -64,6 +64,7 @@
                 $('#quiz2').val(json['subCatalogId']);
                 editor1.txt.html(json["content"]);
                 $('#desc').val(json["summary"]);
+                $('#submit').html("<button class=\"layui-btn\" onclick=\"submitBlog(this)\" id='modifyBlog'>提交修改</button>");
             }
             }
         )

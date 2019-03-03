@@ -1,23 +1,13 @@
 package link.lycreate.blog.controller;
 
-import link.lycreate.blog.model.MainCatalog;
-import link.lycreate.blog.model.Manager;
-import link.lycreate.blog.model.Message;
-import link.lycreate.blog.model.SubCatalog;
-import link.lycreate.blog.service.MainCatalogService;
-import link.lycreate.blog.service.ManagerService;
-import link.lycreate.blog.service.MessageService;
-import link.lycreate.blog.service.SubCatalogService;
+import link.lycreate.blog.model.*;
+import link.lycreate.blog.service.*;
 import link.lycreate.blog.utils.NetResult;
-import org.apache.ibatis.annotations.Param;
-import org.omg.CORBA.INTERNAL;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -42,7 +32,8 @@ public class ManagerController {
     private SubCatalogService subCatalogService;
     @Autowired
     private MessageService messageService;
-
+    @Autowired
+    private CommentService commentService;
     @RequestMapping("/loginrequest")
     public @ResponseBody
     NetResult managerLogin(HttpServletRequest request) {
@@ -159,7 +150,14 @@ public class ManagerController {
                 Timestamp createTime = new Timestamp(time.getTime());
                 System.out.println("title:"+title+" summary:"+summary+" mainCatalogId:"+mainCatalogId+" subCatalogId:"+subCatalogId+" content:"+content+" time:"+createTime);
                 Message message = new Message(title, mainCatalogId, subCatalogId, content, createTime, summary);
-                int count=messageService.uploadMessage(message);
+                String action=request.getParameter("action");
+                int count;
+                String flag="uploadBlog";
+                if (action.equals(flag)){
+                    count=messageService.uploadMessage(message);
+                }else{
+                    count=messageService.updateMessage(message);
+                }
                 NetResult netResult=new NetResult();
                 netResult.setStatus(count);
                 String result=(count==0?"上传失败！":"上传成功！");
@@ -173,5 +171,29 @@ public class ManagerController {
         }
 
     }
-
+    @RequestMapping("/addMainCatalog")
+    public int addMainCatalog(String name){
+        int result=mainCatalogService.addMainCatalog(name);
+        return result;
+    }
+    @RequestMapping("/addSubCatalog")
+    public int addSubCatalog(HttpServletRequest request){
+        String name=request.getParameter("name");
+        String smainCatalogId=request.getParameter("mainCatalogId");
+        int mainCatalogId=Integer.parseInt(smainCatalogId);
+        int result=subCatalogService.addSubCatalog(name,mainCatalogId);
+        return result;
+    }
+    @RequestMapping("/updateMainCatalog")
+    public int updateMainCatalog(HttpServletRequest request){
+        String name=request.getParameter("name");
+        String smainCatalogId=request.getParameter("mainCatalogId");
+        int mainCatalogId=Integer.parseInt(smainCatalogId);
+        int result=mainCatalogService.updateMainCatalog(name,mainCatalogId);
+        return result;
+    }
+    @RequestMapping("/deleteMainCatalog")
+    public int deleteMainCtalog(int mainCatalogId){
+        return mainCatalogService.deleteMainCatalog(mainCatalogId);
+    }
 }

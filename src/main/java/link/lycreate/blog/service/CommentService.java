@@ -35,4 +35,12 @@ public interface CommentService {
      * @return boolean
      */
     public boolean addComment(Comment comment);
+    /**
+     * description
+     * @author LYcreate
+     * @date 2019/3/2 18:53
+     * @param comment
+     * @return int
+     */
+    public int insertComment(Comment comment);
 }

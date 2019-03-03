@@ -1,10 +1,13 @@
 package link.lycreate.blog.controller;
 
+import link.lycreate.blog.model.Comment;
 import link.lycreate.blog.model.MainCatalog;
 import link.lycreate.blog.model.Message;
+import link.lycreate.blog.service.CommentService;
 import link.lycreate.blog.service.MainCatalogService;
 import link.lycreate.blog.service.MessageService;
 import link.lycreate.blog.service.SubCatalogService;
+import link.lycreate.blog.utils.NetResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +34,8 @@ public class PageController {
     private SubCatalogService subCatalogService;
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private CommentService commentService;
     /**
      * description
      * @author LYcreate
@@ -95,8 +103,38 @@ public class PageController {
         return mav;
     }
     @RequestMapping("/getMessage")
-    public @ResponseBody Message getMessage(int messageId){
+    public @ResponseBody Message getMessages(int messageId){
         System.out.println(messageId);
         return messageService.getMessage(messageId);
     }
+    @RequestMapping("/submitComment")
+    public @ResponseBody
+    NetResult addComment(HttpServletRequest request){
+        String userName=request.getParameter("userName");
+        String email=request.getParameter("emailAddress");
+        String content=request.getParameter("content");
+        String sMessageId=request.getParameter("messageId");
+        int messageId=Integer.parseInt(sMessageId);
+        Comment comment=new Comment();
+        comment.setMessageId(messageId);
+        comment.setContent(content);
+        comment.setUserName(userName);
+        comment.setEmail(email);
+        Date time=new Date();
+        Timestamp createTime=new Timestamp(time.getTime());
+        comment.setCreateTime(createTime);
+        int count=commentService.insertComment(comment);
+        NetResult netResult=new NetResult();
+        netResult.setStatus(count);
+        String result=count==1?"评论成功":"评论失败！";
+        netResult.setResult(result);
+        return netResult;
+    }
+
+    @RequestMapping("/getComments")
+    public @ResponseBody
+    List<Comment> getComments(int messageId){
+        return commentService.getCommentByMessageId(messageId);
+    }
+
 }

@@ -3,6 +3,7 @@ package link.lycreate.blog.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,23 +17,20 @@ public class Comment implements Serializable {
     private int commentId;
     private String userName;
     private String email;
-    private int messageId;
-    private Date createTime;
+    private Integer messageId;
+    private Timestamp createTime;
+    private String content;
 
-    public Comment(int commentId, String userName, String email, int messageId, Date createTime) {
+    public Comment() {
+    }
+
+    public Comment(int commentId, String userName, String email, Integer messageId, Timestamp createTime, String content) {
         this.commentId = commentId;
         this.userName = userName;
         this.email = email;
         this.messageId = messageId;
         this.createTime = createTime;
-    }
-
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
+        this.content=content;
     }
 
     public String getUserName() {
@@ -51,11 +49,11 @@ public class Comment implements Serializable {
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -67,14 +65,27 @@ public class Comment implements Serializable {
         this.messageId = messageId;
     }
 
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
-        return "CommentServiceImpl{" +
+        return "Comment{" +
                 "commentId=" + commentId +
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", messageId=" + messageId +
                 ", createTime=" + createTime +
+                ", content='" + content + '\'' +
                 '}';
     }
 }

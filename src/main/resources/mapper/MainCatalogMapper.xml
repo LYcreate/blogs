@@ -15,7 +15,7 @@
         select * from maincatalog where mainCatalog_id=#{mainCatalogId}
     </select>
     <insert id="insertMainCatalog">
-        insert into maincatalog(mainCatalog_id,name) values (#{mainCatalogId},#{name})
+        insert into maincatalog(name) values (#{name})
     </insert>
     <delete id="deleteMainCatalogByName">
         delete from maincatalog where name=#{name}

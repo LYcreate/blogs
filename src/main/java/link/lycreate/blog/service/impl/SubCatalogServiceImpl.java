@@ -60,4 +60,10 @@ public class SubCatalogServiceImpl implements SubCatalogService {
         List<SubCatalog> list=subCatalogMapper.selectSubcatalogByMainCatalogId(mainCatalogId);
         return list;
     }
+
+    @Override
+    public int addSubCatalog(String name,int mainCatalogId) {
+        return subCatalogMapper.inserSubCatalog(name,mainCatalogId);
+    }
+
 }
